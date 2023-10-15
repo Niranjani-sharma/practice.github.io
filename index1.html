@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -97,4 +97,172 @@
 
 
 </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+
+            background-color: rgb(15, 5, 58);
+            /* background: linear-gradient(to right ,grey,blue); */
+            font-family: "montserrat", sans-serif;
+        }
+
+        h1 {
+            color: black;
+            display: flex;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        #mybutton {
+            background: #00CC80;
+            width: auto;
+            display: block;
+            color: #fff;
+            border-radius: 20px;
+            padding: .5em;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 3% auto 7%;
+            position: relative;
+            z-index: 4;
+
+        }
+
+        #innerdiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #comment {
+
+            width: 100%;
+            height: 100px;
+            margin-top: 300px;
+            background-color: rgb(24, 24, 59);
+            color: #fff;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #828076;
+        }
+
+
+        ul {
+            list-style-type: none;
+            margin-left: 90%;
+            padding: 0;
+
+        }
+
+        .blue-container {
+            width: 100%;
+            background: #277e9b;
+            color: #fff;
+            margin-top: 0%;
+            padding: 1em 0 1em;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px
+        }
+
+
+        #upvote-button {
+            background: #828076;
+            width: auto;
+            display: block;
+            color: #fff;
+            border-radius: 10px;
+            padding: .3em;
+            text-decoration: none;
+            font-size: 1em;
+            margin: 3% auto 7%;
+            position: relative;
+            z-index: 4;
+        }
+
+        #downVote-button {
+            background: #828076;
+            width: auto;
+            display: block;
+            color: #fff;
+            border-radius: 10px;
+            padding: .3em;
+            text-decoration: none;
+            font-size: 1em;
+            margin: 3% auto 7%;
+            position: relative;
+            z-index: 4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blue-container">
+        <h1>
+            ChatCraze
+        </h1>
+
+    </div>
+    <ul>
+        <li>
+            <a href="/posts.html">posts</a>
+
+        </li>
+    </ul>
+    <div id="parentDiv"></div>
+    <input type="text" id="comment" placeholder="add a comment">
+
+
+
+    <button id="mybutton">
+        post
+    </button>
+
+    <script>
+        var i = 0;
+        const posts = [];
+
+        document.getElementById("mybutton").addEventListener("click", function () {
+            const innerText = document.getElementById("parentDiv").innerHTML;
+            posts.push(innerText);
+            const commentValue = document.getElementById("comment").value;
+            const postIndex = posts.length - 1;
+
+            const ele = document.createElement("div");
+            ele.innerHTML = `<table style='border:2px solid black;'>
+                <tr>
+                <th>comment</th>
+                <th><button id='upvote-button${postIndex}' onclick='fun(${postIndex})'>Upvote</button></th>
+                <th><div id='score${postIndex}'>0</div></th>
+                <th><button id='downvote-button${postIndex}' onclick='fun1(${postIndex})'>Downvote</button></th>
+                </tr>
+                <tr><td>${commentValue}</td><td></td><td></td></tr></table>`;
+
+            document.getElementById("parentDiv").appendChild(ele);
+        });
+
+        function fun(index) {
+            i++;
+            document.getElementById(`score${index}`).innerHTML = i;
+        }
+
+        function fun1(index) {
+            i--;
+            document.getElementById(`score${index}`).innerHTML = i;
+        }
+    </script>
+    <br>
+</body>
+
 </html>
